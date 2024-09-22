@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package modbus;
+
+import "google/protobuf/timestamp.proto";
+
+message Frame {
+    google.protobuf.Timestamp time = 1;
+    uint32 device_id = 2;
+    uint32 product_id = 3;
+    string product_manufacturer = 4;
+    string product_name = 5;
+    string register_name = 6;
+    double data = 7;
+    string interface = 8;
+}
+
+message Payload {
+    repeated Frame frames = 1;
+}

@@ -1,0 +1,56 @@
+{
+  "title": "Device Schema",
+  "description": "This schema describes a type of device that can be connected to hubd's network over either CANbus or Modbus. An entry in this schema lists a number of metrics which a device can provide",
+  "type": "object",
+  "properties": {
+    "metadata": {
+      "description": "Metadata labels",
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "The display-friendly name of the device",
+          "type": "string"
+        },
+        "description": {
+          "description": "The display-friendly description of the device",
+          "type": "string"
+        }
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "metrics": {
+      "description": "Metric definitions for this device",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "Metric Name",
+            "type": "string"
+          },
+          "source": {
+            "description": "The source of the metric",
+            "type": "string",
+            "enum": ["mimir"]
+          },
+          "query": {
+            "description": "The query to use to find the metric",
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "name",
+          "source",
+          "query"
+        ]
+      }
+    }
+  },
+  "required": [
+    "metrics"
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "title": "Product",
+  "description": "Product descriptor",
+  "type": "object",
+  "properties": {
+    "metadata": {
+      "description": "Metadata labels",
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "registers": {
+      "description": "Register definitions",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/register"
+      },
+      "uniqueItems": true
+    }
+  },
+  "required": ["registers"],
+  "$defs": {
+    "register": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "Register name",
+          "type": "string"
+        },
+        "description": {
+          "description": "Register description",
+          "type": "string"
+        },
+        "address": {
+          "description": "Register address",
+          "type": "integer"
+        },
+        "registers": {
+          "description": "The number of register over which the value spans",
+          "type": "integer",
+          "default": 1,
+          "minimum": 1,
+          "maximum": 8
+        },
+        "slave_id": {
+          "description": "The id of the modbus slave",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 255
+        },
+        "factor": {
+          "description": "Value scaling factor",
+          "type": "number",
+          "default": 1
+        },
+        "offset": {
+          "description": "Value offset",
+          "type": "number",
+          "default": 0
+        },
+        "value_type": {
+          "description": "The type to interpret the read bits as",
+          "type": "string",
+          "enum": ["bool", "u16", "i16", "u32", "i32", "f32"],
+          "default": "u16"
+        },
+        "endianness": {
+          "description": "The endianness of the read value",
+          "type": "string",
+          "enum": ["little", "big"],
+          "default": "little"
+        },
+        "word_swap": {
+          "description": "Whether to swap the words (16bits) as read. This is a necessary option as the word order is not defined in the modbus spec and some implementations unfortunately swap them.",
+          "type": "boolean",
+          "default": false
+        },
+        "bit_index": {
+          "description": "If the value of the register being read is of type `bool`, this field describes the index of the bit within the register.",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 7,
+          "default": 0
+        }
+      },
+      "required": ["address", "name"]
+    }
+  }
+}

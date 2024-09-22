@@ -1,0 +1,60 @@
+VERSION ""
+
+NS_ :
+
+BS_:
+
+BU_: Vector__XXX
+
+
+BO_ 860 pylontech_battery_lv_charge_request: 2 Vector__XXX
+ SG_ full_charge_req : 3|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ force_charge_req_ii : 4|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ force_charge_req_i : 5|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ discharge_enable : 6|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ charge_enable : 7|1@1+ (1,0) [0|1] "" Vector__XXX
+
+BO_ 854 pylontech_battery_lv_actual_values: 6 Vector__XXX
+ SG_ temperature : 32|16@1- (0.1,0) [-50|75] "C" Vector__XXX
+ SG_ current : 16|16@1- (0.1,0) [-250|250] "A" Vector__XXX
+ SG_ voltage : 0|16@1- (0.01,0) [0|327.67] "V" Vector__XXX
+
+BO_ 853 pylontech_battery_lv_soc_soh: 4 Vector__XXX
+ SG_ soh : 16|16@1+ (1,0) [0|100] "%" Vector__XXX
+ SG_ soc : 0|16@1+ (1,0) [0|100] "%" Vector__XXX
+
+BO_ 849 pylontech_battery_lv_limits: 8 Vector__XXX
+ SG_ discharge_current_limit : 32|16@1- (0.1,0) [-500|0] "A" Vector__XXX
+ SG_ charge_current_limit : 16|16@1- (0.1,0) [0|500] "A" Vector__XXX
+ SG_ charge_voltage_limit : 0|16@1- (0.1,0) [0|75] "V" Vector__XXX
+ SG_ discharge_voltage_limit : 48|16@1+ (0.1,0) [0|6553.5] "V" Vector__XXX
+
+BO_ 857 pylontech_battery_lv_error_warnings: 7 Vector__XXX
+ SG_ module_numbers : 32|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ charge_current_high_warning : 24|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ internal_error_warning : 27|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ voltage_low_warning : 18|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ voltage_high_warning : 17|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ temperature_high_warning : 19|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ temperature_low_warning : 20|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ discharge_current_high_warning : 23|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ charge_overcurrent_error : 8|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ system_error : 11|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ overvoltage_error : 1|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ undervoltage_error : 2|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ overtemperature_error : 3|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ undertemperature_error : 4|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ overcurrent_discharge_error : 7|1@1+ (1,0) [0|1] "" Vector__XXX
+
+CM_ BO_ 853 "State of Charge (SoC) and State of Health (SoH) of the battery.";
+CM_ BO_ 857 "Battery Error and Warning Messages.";
+
+BA_DEF_  "BusType" STRING ;
+BA_DEF_ BO_  "GenMsgCycleTime" INT 0 65535;
+BA_DEF_ SG_  "GenSigStartValue" FLOAT -3.4E+038 3.4E+038;
+
+BA_DEF_DEF_ "BusType" "CAN";
+BA_DEF_DEF_ "GenMsgCycleTime" 0;
+BA_DEF_DEF_ "GenSigStartValue" 0;
+
+BA_ "BusType" "CAN";

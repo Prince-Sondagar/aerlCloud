@@ -1,0 +1,54 @@
+{
+  "title": "Device Type",
+  "description": "This schema describes a type of device that can be connected to hubd's network over either CANbus or Modbus. An entry in this schema lists a number of metrics which a device can provide",
+  "type": "object",
+  "properties": {
+    "metadata": {
+      "description": "Metadata labels",
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "The display-friendly name of the device type",
+          "type": "string"
+        },
+        "description": {
+          "description": "The display-friendly description of the device type",
+          "type": "string"
+        }
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "metrics": {
+      "description": "Metric definitions for this product type",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "Metric Name",
+            "type": "string"
+          },
+          "description": {
+            "description": "A description of what the metric measures and its units.",
+            "type": "string"
+          },
+          "unit": {
+            "description": "The unit in which the metric is measured",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "description",
+          "unit"
+        ]
+      },
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "metrics"
+  ]
+}
